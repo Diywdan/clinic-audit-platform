@@ -1,0 +1,2 @@
+ALTER TABLE "Answer"
+ADD COLUMN "optionId" TEXT;
