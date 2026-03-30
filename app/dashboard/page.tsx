@@ -137,19 +137,14 @@ export default async function DashboardPage({
 
   return (
     <AppShell
-      title="Панель управления качеством"
-      subtitle="Сводная картина по сети клиник, ключевым рискам и динамике за выбранный период"
+      title="Сводка по сети клиник"
+      subtitle=""
       role={session.user.role}
     >
       <Card className="manager-hero-card">
         <div className="manager-hero-head">
           <div className="manager-hero-content">
-            <p className="eyebrow">Управленческий обзор</p>
-            <h3>Сводка качества по текущему управленческому срезу</h3>
-            <p className="manager-hero-text">
-              Фокус верхнего экрана: период, контур и ключевые сигналы для
-              руководителя. Ниже — фильтры и основные KPI.
-            </p>
+            <h3>Сводка по сети клиник</h3>
 
             <div className="manager-hero-context">
               <div className="manager-context-chip">

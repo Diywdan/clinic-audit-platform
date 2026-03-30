@@ -46,7 +46,6 @@ export function AppShell({ title, subtitle, role, children }: AppShellProps) {
             <Building2 size={22} />
           </div>
           <div>
-            <p className="eyebrow">Жалоба как подарок</p>
             <h1>Платформа обращений</h1>
           </div>
         </div>
@@ -86,7 +85,7 @@ export function AppShell({ title, subtitle, role, children }: AppShellProps) {
       </aside>
       <main className="content">
         <header className="topbar">
-          <div className="topbar-brand">Жалоба как подарок</div>
+          <div className="topbar-brand"></div>
           <div className="topbar-tools">
             {showSearch ? (
               <label className="searchbox">
@@ -98,9 +97,6 @@ export function AppShell({ title, subtitle, role, children }: AppShellProps) {
         </header>
         <header className="page-header">
           <div>
-            <p className="eyebrow">
-              {role === "ADMIN" ? "Администратор" : role === "MANAGER" ? "Руководитель" : "Оценщик"}
-            </p>
             <h2>{title}</h2>
             {subtitle ? <p className="page-subtitle">{subtitle}</p> : null}
           </div>
