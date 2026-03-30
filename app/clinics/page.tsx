@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { AlertTriangle, Building2, Camera, ShieldAlert, TrendingUp } from "lucide-react";
 
 import { AppShell } from "@/components/layout/app-shell";
 import { Button } from "@/components/ui/button";
@@ -37,13 +38,70 @@ export default async function ClinicsPage({
       return right.averageScore - left.averageScore;
     });
 
+  const averageNetworkScore = filteredClinics.length
+    ? Math.round(filteredClinics.reduce((sum, clinic) => sum + clinic.averageScore, 0) / filteredClinics.length)
+    : 0;
+  const criticalClinics = filteredClinics.filter((clinic) => clinic.criticalViolations > 0).length;
+  const riskClinics = filteredClinics.filter((clinic) => clinic.averageScore < 50).length;
+  const totalPhotos = filteredClinics.reduce((sum, clinic) => sum + clinic.photos.length, 0);
+
   return (
     <AppShell
       title="Поликлиники"
       subtitle="Сводка по объектам, статусам, фотографиям и динамике оценок"
       role={session.user.role}
     >
-      <Card>
+      <Card className="clinic-list-hero">
+        <div className="clinic-list-hero-head">
+          <div>
+            <p className="eyebrow">Контур объектов</p>
+            <h3>Управление поликлиниками сети в одном списке</h3>
+            <p className="clinic-list-hero-text">
+              Быстрый вход в проблемные и сильные объекты: рейтинг, статус, тренд и фотоматериалы по каждой поликлинике.
+            </p>
+          </div>
+          <div className="clinic-list-hero-meta">
+            <span>Объектов в выборке</span>
+            <strong>{filteredClinics.length}</strong>
+          </div>
+        </div>
+        <div className="clinic-list-kpi-grid">
+          <div className="clinic-list-kpi-box">
+            <div className="clinic-list-kpi-icon clinic-list-kpi-icon-primary">
+              <Building2 size={18} />
+            </div>
+            <span>Средний балл сети</span>
+            <strong>{averageNetworkScore}%</strong>
+            <small>По текущей выборке объектов</small>
+          </div>
+          <div className="clinic-list-kpi-box clinic-list-kpi-box-warning">
+            <div className="clinic-list-kpi-icon clinic-list-kpi-icon-warning">
+              <ShieldAlert size={18} />
+            </div>
+            <span>Критические нарушения</span>
+            <strong>{criticalClinics}</strong>
+            <small>Поликлиник с критическими флагами</small>
+          </div>
+          <div className="clinic-list-kpi-box clinic-list-kpi-box-danger">
+            <div className="clinic-list-kpi-icon clinic-list-kpi-icon-danger">
+              <AlertTriangle size={18} />
+            </div>
+            <span>Красная зона</span>
+            <strong>{riskClinics}</strong>
+            <small>Объектов с баллом ниже 50%</small>
+          </div>
+          <div className="clinic-list-kpi-box">
+            <div className="clinic-list-kpi-icon clinic-list-kpi-icon-neutral">
+              <Camera size={18} />
+            </div>
+            <span>Фотоматериалы</span>
+            <strong>{totalPhotos}</strong>
+            <small>Фото в текущем списке объектов</small>
+          </div>
+        </div>
+      </Card>
+
+      <Card className="clinic-filter-card">
         <form className="clinic-filter-bar">
           <Input name="q" defaultValue={query} placeholder="Поиск по названию или адресу..." />
           <Select name="status" defaultValue={status}>
@@ -65,7 +123,7 @@ export default async function ClinicsPage({
         </form>
       </Card>
 
-      <div className="clinic-list-meta">
+      <div className="clinic-list-meta clinic-list-meta-strong">
         <span>Найдено объектов: {filteredClinics.length}</span>
       </div>
 
@@ -108,11 +166,17 @@ export default async function ClinicsPage({
                   </div>
                 ))}
               </div>
-              <div className="clinic-photo-row">
+              <div className="clinic-photo-row clinic-photo-row-compact">
                 {clinic.photos.length ? (
-                  clinic.photos.map((photo) => (
-                    <img key={photo.id} src={photo.url} alt="Фото поликлиники" className="clinic-photo-thumb" />
-                  ))
+                  <>
+                    <img src={clinic.photos[0].url} alt="Фото поликлиники" className="clinic-photo-thumb clinic-photo-thumb-primary" />
+                    <div className="clinic-photo-stack">
+                      {clinic.photos.slice(1, 3).map((photo) => (
+                        <img key={photo.id} src={photo.url} alt="Фото поликлиники" className="clinic-photo-thumb clinic-photo-thumb-secondary" />
+                      ))}
+                      <div className="clinic-photo-counter">Фото: {clinic.photos.length}</div>
+                    </div>
+                  </>
                 ) : (
                   <div className="clinic-photo-empty">Фото пока не загружены</div>
                 )}
