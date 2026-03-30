@@ -35,13 +35,12 @@ export default async function EvaluationsPage() {
   return (
     <AppShell
       title="Рабочее место проверки"
-      subtitle="Быстрый запуск аудита, контроль отправок и вся рабочая форма в одном экране"
+      subtitle=""
       role={session.user.role}
     >
       <Card className="evaluator-hero-card">
         <div className="evaluator-hero-head">
           <div>
-            <p className="eyebrow">Первый экран оценщика</p>
             <h3>
               Начните новую проверку и держите текущий поток под контролем.
             </h3>
@@ -109,38 +108,6 @@ export default async function EvaluationsPage() {
             <span>Загружено фото</span>
             <strong>{totalPhotos}</strong>
             <small>Во всех недавних отправках</small>
-          </div>
-        </div>
-      </Card>
-
-      <Card className="evaluator-focus-card">
-        <div className="evaluator-focus-grid">
-          <div>
-            <p className="eyebrow">Главное действие</p>
-            <h3>Новая проверка начинается сразу на этой странице.</h3>
-            <p className="evaluator-hero-text">
-              Не нужно переходить в отдельный мастер. Выберите клинику,
-              ответьте на критерии, загрузите фотографии и отправьте результат в
-              одном рабочем потоке.
-            </p>
-          </div>
-
-          <div className="evaluator-focus-checklist">
-            <div className="evaluator-focus-item">
-              <strong>Что обязательно перед отправкой</strong>
-              <p>
-                Минимум 80% критериев, хотя бы один критический критерий и
-                минимум 3 фото.
-              </p>
-            </div>
-
-            <div className="evaluator-focus-item">
-              <strong>Что увидите после отправки</strong>
-              <p>
-                Итоговый балл, обновлённый список последних проверок и
-                фотографии в истории отправок.
-              </p>
-            </div>
           </div>
         </div>
       </Card>
