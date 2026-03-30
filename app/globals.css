@@ -3220,6 +3220,21 @@ input[type="file"] {
   }
 }
 @media (max-width: 780px) {
+  .content {
+    padding: 14px 14px 92px;
+  }
+
+  .topbar {
+    height: 56px;
+    border-radius: 14px;
+    padding: 0 14px;
+    margin-bottom: 14px;
+  }
+
+  .topbar-brand {
+    font-size: 0.92rem;
+  }
+
   .page-header {
     margin-bottom: 16px;
   }
@@ -3230,6 +3245,38 @@ input[type="file"] {
 
   .page-subtitle {
     font-size: 0.95rem;
+    line-height: 1.5;
+  }
+
+  .card,
+  .metric-box,
+  .clinic-card,
+  .evaluator-submission-card,
+  .audit-block-card,
+  .audit-readiness-card,
+  .audit-media-card,
+  .audit-success-card {
+    padding: 16px;
+    border-radius: 16px;
+  }
+
+  .section-heading {
+    margin-bottom: 12px;
+  }
+
+  .section-heading h3 {
+    font-size: 1.08rem;
+  }
+
+  .section-heading p,
+  .kpi-row p,
+  .clinic-card-header p,
+  .clinic-list-hero-text,
+  .manager-hero-text,
+  .clinic-address,
+  .clinic-breadcrumb,
+  .manager-flow-anchor p {
+    font-size: 0.9rem;
     line-height: 1.5;
   }
 
@@ -3245,25 +3292,21 @@ input[type="file"] {
 
   .manager-hero-head h3,
   .clinic-list-hero-head h3,
-  .clinic-hero h1 {
+  .clinic-hero h1,
+  .evaluator-hero-head h3,
+  .evaluator-focus-card h3 {
     font-size: 1.28rem;
     line-height: 1.15;
-  }
-
-  .manager-hero-text,
-  .clinic-list-hero-text,
-  .clinic-address,
-  .clinic-breadcrumb,
-  .manager-flow-anchor p {
-    font-size: 0.92rem;
-    line-height: 1.5;
   }
 
   .manager-hero-context,
   .manager-overview-grid,
   .clinic-list-kpi-grid,
   .clinic-detail-summary-grid,
-  .clinic-score-row {
+  .clinic-score-row,
+  .evaluator-kpi-grid,
+  .evaluator-quickstart-grid,
+  .evaluator-focus-grid {
     gap: 8px;
   }
 
@@ -3271,7 +3314,10 @@ input[type="file"] {
   .manager-overview-box,
   .clinic-list-kpi-box,
   .clinic-detail-summary-card,
-  .clinic-score-box {
+  .clinic-score-box,
+  .evaluator-kpi-box,
+  .evaluator-quickstart-card,
+  .evaluator-focus-item {
     padding: 12px;
     border-radius: 14px;
   }
@@ -3280,25 +3326,33 @@ input[type="file"] {
   .manager-overview-box strong,
   .clinic-list-kpi-box strong,
   .clinic-detail-summary-card strong,
-  .clinic-score-box strong {
-    font-size: 1.15rem;
+  .clinic-score-box strong,
+  .evaluator-kpi-box strong,
+  .metric-box strong {
+    font-size: 1.12rem;
   }
 
   .manager-kpi-grid,
   .clinic-list-kpi-grid,
-  .clinic-detail-summary-grid {
+  .clinic-detail-summary-grid,
+  .evaluator-kpi-grid {
     grid-template-columns: 1fr 1fr;
   }
 
   .kpi-card,
   .manager-kpi-card,
   .clinic-list-kpi-box,
-  .clinic-detail-summary-card {
+  .clinic-detail-summary-card,
+  .evaluator-kpi-box {
     min-height: unset;
   }
 
+  .kpi-row {
+    gap: 8px;
+  }
+
   .kpi-row h3 {
-    font-size: 1.55rem;
+    font-size: 1.45rem;
   }
 
   .manager-podium-grid {
@@ -3319,6 +3373,25 @@ input[type="file"] {
   .table-wrap {
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
+    border-radius: 14px;
+  }
+
+  .table th,
+  .table td {
+    padding: 12px 8px;
+    font-size: 0.9rem;
+  }
+
+  .table thead th {
+    font-size: 0.66rem;
+  }
+
+  .chart-card {
+    min-height: 300px;
+  }
+
+  .chart-wrap {
+    height: 220px;
   }
 
   .manager-clinic-cell {
@@ -3330,16 +3403,19 @@ input[type="file"] {
     grid-template-columns: 1fr;
   }
 
+  .button {
+    min-height: 44px;
+    width: 100%;
+    justify-content: center;
+  }
+
   .clinic-grid {
     grid-template-columns: 1fr;
     gap: 14px;
   }
 
-  .clinic-card {
-    padding: 16px;
-  }
-
-  .clinic-photo-row-compact {
+  .clinic-photo-row-compact,
+  .photo-grid {
     grid-template-columns: 1fr;
   }
 
@@ -3351,7 +3427,8 @@ input[type="file"] {
   .clinic-hero-score-compact,
   .clinic-list-hero-meta,
   .manager-ranking-meta,
-  .clinic-history-meta {
+  .clinic-history-meta,
+  .evaluator-history-meta {
     min-width: 0;
     width: 100%;
     text-align: left;
@@ -3359,7 +3436,9 @@ input[type="file"] {
 
   .clinic-history-heading,
   .manager-ranking-heading,
-  .clinic-list-hero-head {
+  .clinic-list-hero-head,
+  .evaluator-history-heading,
+  .evaluator-submission-head {
     align-items: stretch;
   }
 }
