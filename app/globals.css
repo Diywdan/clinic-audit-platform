@@ -1250,6 +1250,12 @@ input[type="file"] {
   position: sticky;
   top: 82px;
   z-index: 20;
+  transition: padding 0.18s ease, box-shadow 0.18s ease;
+}
+
+.audit-sticky-card-compact {
+  padding-top: 12px;
+  padding-bottom: 12px;
 }
 
 .audit-topbar {
@@ -1257,6 +1263,12 @@ input[type="file"] {
   justify-content: space-between;
   gap: 20px;
   align-items: flex-end;
+}
+
+.audit-topbar-compact .audit-title,
+.audit-topbar-compact .audit-subtitle,
+.audit-topbar-compact .audit-clinic-field {
+  display: none;
 }
 
 .audit-title {
@@ -1314,6 +1326,10 @@ input[type="file"] {
   display: flex;
   gap: 12px;
   margin-top: 14px;
+}
+
+.audit-summary-row-compact {
+  display: none;
 }
 
 .audit-summary-box {
@@ -2361,9 +2377,14 @@ input[type="file"] {
   }
 
   .audit-sticky-card {
-    position: static;
-    top: auto;
+    position: sticky;
+    top: 72px;
     padding: 16px;
+  }
+
+  .audit-sticky-card-compact {
+    padding-top: 10px;
+    padding-bottom: 10px;
   }
 
   .audit-topbar,

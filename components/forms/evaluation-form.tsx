@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useRef, useState, useTransition } from "react";
+import { useEffect, useMemo, useRef, useState, useTransition } from "react";
 import { useRouter } from "next/navigation";
 
 import { Button } from "@/components/ui/button";
@@ -66,6 +66,7 @@ export function EvaluationForm({
   } | null>(null);
 
   const [isPending, startTransition] = useTransition();
+  const [isCompactProgress, setIsCompactProgress] = useState(false);
 
   const criteriaByBlock = useMemo(
     () =>
@@ -163,6 +164,28 @@ export function EvaluationForm({
     () => files.map((file) => ({ file, url: URL.createObjectURL(file) })),
     [files]
   );
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia("(max-width: 980px)");
+
+    function updateCompactState() {
+      if (!mediaQuery.matches) {
+        setIsCompactProgress(false);
+        return;
+      }
+
+      setIsCompactProgress(window.scrollY > 120);
+    }
+
+    updateCompactState();
+    window.addEventListener("scroll", updateCompactState, { passive: true });
+    mediaQuery.addEventListener("change", updateCompactState);
+
+    return () => {
+      window.removeEventListener("scroll", updateCompactState);
+      mediaQuery.removeEventListener("change", updateCompactState);
+    };
+  }, []);
 
   function appendFiles(nextFiles: FileList | File[] | null) {
     const incoming = Array.from(nextFiles ?? []);
@@ -331,8 +354,8 @@ export function EvaluationForm({
 
   return (
     <div className="audit-layout">
-      <Card className="audit-sticky-card">
-        <div className="audit-topbar">
+      <Card className={cn("audit-sticky-card", isCompactProgress && "audit-sticky-card-compact") }>
+        <div className={cn("audit-topbar", isCompactProgress && "audit-topbar-compact")}>
           <div>
             <div className="audit-title">Оценка объекта</div>
             <div className="audit-subtitle">
@@ -371,7 +394,7 @@ export function EvaluationForm({
           />
         </div>
 
-        <div className="audit-summary-row">
+        <div className={cn("audit-summary-row", isCompactProgress && "audit-summary-row-compact")}>
           <div className="audit-summary-box">
             <span>Критические</span>
             <strong>{criticalAnswered ? "Да" : "Нет"}</strong>
