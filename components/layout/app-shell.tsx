@@ -46,6 +46,7 @@ export function AppShell({ title, subtitle, role, children }: AppShellProps) {
             <Building2 size={22} />
           </div>
           <div>
+            <p className="eyebrow">Жалоба как подарок</p>
             <h1>Платформа обращений</h1>
           </div>
         </div>

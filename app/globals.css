@@ -2294,9 +2294,9 @@ input[type="file"] {
   }
 
   .topbar {
-    position: sticky;
-    top: 10px;
-    z-index: 30;
+    position: static;
+    top: auto;
+    z-index: auto;
   }
 
   .searchbox {
@@ -3232,7 +3232,8 @@ input[type="file"] {
   }
 
   .topbar-brand {
-    display: none;
+    display: block;
+    font-size: 0.9rem;
   }
 
   .page-header {

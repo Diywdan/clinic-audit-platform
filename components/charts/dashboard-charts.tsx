@@ -53,7 +53,6 @@ export function DashboardCharts({
           <div className="section-heading">
             <div>
               <h3>Сравнение блоков</h3>
-              <p>Средний балл по блокам для текущего набора фильтров</p>
             </div>
             <span className="manager-chart-chip">Где просадка сильнее</span>
           </div>
