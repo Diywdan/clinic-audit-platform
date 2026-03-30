@@ -2398,6 +2398,10 @@ input[type="file"] {
   background: linear-gradient(180deg, #ffffff 0%, #fbfdff 100%);
 }
 
+.manager-ranking-card-full {
+  width: 100%;
+}
+
 .manager-ranking-heading {
   align-items: center;
 }

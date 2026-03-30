@@ -356,144 +356,104 @@ export default async function DashboardPage({
         </Card>
       </div>
 
-      <div className="manager-analytics-grid">
-        <Card className="manager-ranking-card">
-          <div className="section-heading manager-ranking-heading">
-            <div>
-              <h3>Рейтинг клиник</h3>
-              <p>
-                Общий балл, блоки, тренд и сигналы риска по текущему
-                управленческому срезу
-              </p>
-            </div>
-            <div className="manager-ranking-meta">
-              <span>Объектов в рейтинге</span>
-              <strong>{ranking.length}</strong>
-            </div>
+      <Card className="manager-ranking-card manager-ranking-card-full">
+        <div className="section-heading manager-ranking-heading">
+          <div>
+            <h3>Рейтинг клиник</h3>
+            <p>
+              Общий балл, блоки, тренд и сигналы риска по текущему
+              управленческому срезу
+            </p>
           </div>
+          <div className="manager-ranking-meta">
+            <span>Объектов в рейтинге</span>
+            <strong>{ranking.length}</strong>
+          </div>
+        </div>
 
-          {topThree.length ? (
-            <div className="manager-podium-grid">
-              {topThree.map((row, index) => (
-                <div key={row.clinicId} className="manager-podium-card">
-                  <div className="manager-podium-rank">#{index + 1}</div>
-                  <strong>{row.clinicName}</strong>
-                  <p>
-                    {index === 0
-                      ? "Лидер периода"
-                      : "Один из сильнейших результатов текущего среза"}
-                  </p>
-                  <div className="manager-podium-score">{row.averageScore}%</div>
-                </div>
-              ))}
-            </div>
-          ) : null}
+        {topThree.length ? (
+          <div className="manager-podium-grid">
+            {topThree.map((row, index) => (
+              <div key={row.clinicId} className="manager-podium-card">
+                <div className="manager-podium-rank">#{index + 1}</div>
+                <strong>{row.clinicName}</strong>
+                <p>
+                  {index === 0
+                    ? "Лидер периода"
+                    : "Один из сильнейших результатов текущего среза"}
+                </p>
+                <div className="manager-podium-score">{row.averageScore}%</div>
+              </div>
+            ))}
+          </div>
+        ) : null}
 
-          <div className="table-wrap manager-table-wrap">
-            <table className="table manager-table">
-              <thead>
-                <tr>
-                  <th>Место / клиника</th>
-                  <th>Итог</th>
-                  <th>Блок 1</th>
-                  <th>Блок 2</th>
-                  <th>Блок 3</th>
-                  <th>Блок 4</th>
-                  <th>Проверки</th>
-                  <th>Тренд</th>
-                  <th>Статус</th>
-                </tr>
-              </thead>
-              <tbody>
-                {ranking.map((row, index) => (
-                  <tr key={row.clinicId}>
-                    <td>
-                      <div className="manager-clinic-cell">
-                        <div className="manager-rank-badge">#{index + 1}</div>
-                        <div>
-                          <strong>
-                            <Link href={`/clinics/${row.clinicId}`} className="inline-link">
-                              {row.clinicName}
-                            </Link>
-                          </strong>
-                          <div className="manager-clinic-subline">
-                            {row.criticalViolations > 0
-                              ? `Критических нарушений: ${row.criticalViolations}`
-                              : "Критических флагов нет"}
-                          </div>
+        <div className="table-wrap manager-table-wrap">
+          <table className="table manager-table">
+            <thead>
+              <tr>
+                <th>Место / клиника</th>
+                <th>Итог</th>
+                <th>Блок 1</th>
+                <th>Блок 2</th>
+                <th>Блок 3</th>
+                <th>Блок 4</th>
+                <th>Проверки</th>
+                <th>Тренд</th>
+                <th>Статус</th>
+              </tr>
+            </thead>
+            <tbody>
+              {ranking.map((row, index) => (
+                <tr key={row.clinicId}>
+                  <td>
+                    <div className="manager-clinic-cell">
+                      <div className="manager-rank-badge">#{index + 1}</div>
+                      <div>
+                        <strong>
+                          <Link href={`/clinics/${row.clinicId}`} className="inline-link">
+                            {row.clinicName}
+                          </Link>
+                        </strong>
+                        <div className="manager-clinic-subline">
+                          {row.criticalViolations > 0
+                            ? `Критических нарушений: ${row.criticalViolations}`
+                            : "Критических флагов нет"}
                         </div>
                       </div>
+                    </div>
+                  </td>
+                  <td>
+                    <span className="manager-score-pill">{row.averageScore}%</span>
+                  </td>
+                  {row.blocks.map((block) => (
+                    <td key={block.blockId}>
+                      <span className="manager-block-pill">{block.score}%</span>
                     </td>
-                    <td>
-                      <span className="manager-score-pill">{row.averageScore}%</span>
-                    </td>
-                    {row.blocks.map((block) => (
-                      <td key={block.blockId}>
-                        <span className="manager-block-pill">{block.score}%</span>
-                      </td>
-                    ))}
-                    <td>{row.evaluations}</td>
-                    <td>
-                      <span
-                        className={`manager-trend-pill ${
-                          row.trend > 0
-                            ? "manager-trend-up"
-                            : row.trend < 0
-                              ? "manager-trend-down"
-                              : "manager-trend-flat"
-                        }`}
-                      >
-                        {row.trend > 0 ? `+${row.trend}` : row.trend}%
-                      </span>
-                    </td>
-                    <td>
-                      <span className={`status-pill ${row.status.className}`}>{row.status.label}</span>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        </Card>
-
-        <div className="manager-insight-stack">
-          <Card className="manager-insight-card">
-            <div className="section-heading">
-              <div>
-                <h3>Как читать аналитику ниже</h3>
-                <p>
-                  Короткая интерпретация для руководителя перед графиками и
-                  детализацией
-                </p>
-              </div>
-            </div>
-
-            <div className="manager-insight-list">
-              <div className="manager-insight-item">
-                <strong>Сначала смотрите на тренд</strong>
-                <p>
-                  Даже при хорошем текущем балле отрицательная динамика может
-                  сигнализировать о начале просадки.
-                </p>
-              </div>
-              <div className="manager-insight-item">
-                <strong>Потом сверяйте блоки</strong>
-                <p>
-                  Разница между блоками помогает понять, где проблема системная,
-                  а где локальная.
-                </p>
-              </div>
-              <div className="manager-insight-item">
-                <strong>Фильтры меняют весь срез</strong>
-                <p>
-                  Рейтинг, графики и экспорт всегда относятся к выбранному
-                  периоду и текущему контуру.
-                </p>
-              </div>
-            </div>
-          </Card>
+                  ))}
+                  <td>{row.evaluations}</td>
+                  <td>
+                    <span
+                      className={`manager-trend-pill ${
+                        row.trend > 0
+                          ? "manager-trend-up"
+                          : row.trend < 0
+                            ? "manager-trend-down"
+                            : "manager-trend-flat"
+                      }`}
+                    >
+                      {row.trend > 0 ? `+${row.trend}` : row.trend}%
+                    </span>
+                  </td>
+                  <td>
+                    <span className={`status-pill ${row.status.className}`}>{row.status.label}</span>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </div>
-      </div>
+      </Card>
 
       <DashboardCharts trends={trends} blockComparison={blockComparison} />
     </AppShell>
