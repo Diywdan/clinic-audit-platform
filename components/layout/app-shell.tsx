@@ -104,20 +104,22 @@ export function AppShell({ title, subtitle, role, children }: AppShellProps) {
         </header>
         <div className="page-content">{children}</div>
       </main>
-      <nav className="mobile-nav">
-        {links.slice(0, 3).map((link) => {
-          const Icon = link.icon;
-          const isActive =
-            pathname === link.href ||
-            (link.href !== "/" && pathname.startsWith(`${link.href}/`));
-          return (
-            <Link key={link.href} className={`mobile-link ${isActive ? "mobile-link-active" : ""}`} href={link.href}>
-              <Icon size={18} />
-              <span>{link.label}</span>
-            </Link>
-          );
-        })}
-      </nav>
+      {role !== "EVALUATOR" ? (
+        <nav className="mobile-nav">
+          {links.slice(0, 3).map((link) => {
+            const Icon = link.icon;
+            const isActive =
+              pathname === link.href ||
+              (link.href !== "/" && pathname.startsWith(`${link.href}/`));
+            return (
+              <Link key={link.href} className={`mobile-link ${isActive ? "mobile-link-active" : ""}`} href={link.href}>
+                <Icon size={18} />
+                <span>{link.label}</span>
+              </Link>
+            );
+          })}
+        </nav>
+      ) : null}
     </div>
   );
 }
