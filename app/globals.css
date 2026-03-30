@@ -3198,3 +3198,147 @@ input[type="file"] {
     min-width: 100%;
   }
 }
+@media (max-width: 780px) {
+  .page-header {
+    margin-bottom: 16px;
+  }
+
+  .page-header h2 {
+    font-size: 1.55rem;
+  }
+
+  .page-subtitle {
+    font-size: 0.95rem;
+    line-height: 1.5;
+  }
+
+  .manager-hero-card,
+  .clinic-list-hero,
+  .clinic-hero,
+  .clinic-history-card,
+  .clinic-selected-report-card,
+  .clinic-detail-summary-card {
+    padding: 16px;
+    border-radius: 16px;
+  }
+
+  .manager-hero-head h3,
+  .clinic-list-hero-head h3,
+  .clinic-hero h1 {
+    font-size: 1.28rem;
+    line-height: 1.15;
+  }
+
+  .manager-hero-text,
+  .clinic-list-hero-text,
+  .clinic-address,
+  .clinic-breadcrumb,
+  .manager-flow-anchor p {
+    font-size: 0.92rem;
+    line-height: 1.5;
+  }
+
+  .manager-hero-context,
+  .manager-overview-grid,
+  .clinic-list-kpi-grid,
+  .clinic-detail-summary-grid,
+  .clinic-score-row {
+    gap: 8px;
+  }
+
+  .manager-context-chip,
+  .manager-overview-box,
+  .clinic-list-kpi-box,
+  .clinic-detail-summary-card,
+  .clinic-score-box {
+    padding: 12px;
+    border-radius: 14px;
+  }
+
+  .manager-context-chip strong,
+  .manager-overview-box strong,
+  .clinic-list-kpi-box strong,
+  .clinic-detail-summary-card strong,
+  .clinic-score-box strong {
+    font-size: 1.15rem;
+  }
+
+  .manager-kpi-grid,
+  .clinic-list-kpi-grid,
+  .clinic-detail-summary-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .kpi-card,
+  .manager-kpi-card,
+  .clinic-list-kpi-box,
+  .clinic-detail-summary-card {
+    min-height: unset;
+  }
+
+  .kpi-row h3 {
+    font-size: 1.55rem;
+  }
+
+  .manager-podium-grid {
+    grid-template-columns: 1fr;
+    gap: 8px;
+    margin: 14px 0;
+  }
+
+  .manager-podium-card {
+    padding: 12px 14px;
+  }
+
+  .manager-podium-score {
+    font-size: 1.2rem;
+  }
+
+  .manager-table-wrap,
+  .table-wrap {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .manager-clinic-cell {
+    min-width: 180px;
+  }
+
+  .clinic-filter-bar,
+  .evaluation-toolbar {
+    grid-template-columns: 1fr;
+  }
+
+  .clinic-grid {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .clinic-card {
+    padding: 16px;
+  }
+
+  .clinic-photo-row-compact {
+    grid-template-columns: 1fr;
+  }
+
+  .clinic-photo-thumb-primary {
+    aspect-ratio: 1.5 / 1;
+  }
+
+  .clinic-hero-score,
+  .clinic-hero-score-compact,
+  .clinic-list-hero-meta,
+  .manager-ranking-meta,
+  .clinic-history-meta {
+    min-width: 0;
+    width: 100%;
+    text-align: left;
+  }
+
+  .clinic-history-heading,
+  .manager-ranking-heading,
+  .clinic-list-hero-head {
+    align-items: stretch;
+  }
+}
