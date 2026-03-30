@@ -1265,8 +1265,7 @@ input[type="file"] {
   align-items: flex-end;
 }
 
-.audit-topbar-compact .audit-title,
-.audit-topbar-compact .audit-subtitle,
+.audit-topbar-compact > div:first-child,
 .audit-topbar-compact .audit-clinic-field {
   display: none;
 }
