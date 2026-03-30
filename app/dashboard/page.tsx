@@ -68,16 +68,6 @@ export default async function DashboardPage({
     ? `по ${format(to, "dd.MM.yyyy")}`
     : "Весь период";
 
-  const executiveSummary = [
-    `${riskCount} клиник находятся в красной зоне.`,
-    `Средний балл по сети — ${averageNetworkScore}%.`,
-    criticalCount
-      ? `${criticalCount} клиник имеют критические нарушения.`
-      : "Критических нарушений по текущей выборке не выявлено.",
-    leader
-      ? `Лидер периода — ${leader.clinicName}.`
-      : "Пока недостаточно данных для выделения лидера.",
-  ];
 
   const attentionItems = [
     weakest
@@ -204,14 +194,6 @@ export default async function DashboardPage({
           </div>
         </div>
 
-        <div className="manager-summary-list">
-          {executiveSummary.map((item) => (
-            <div key={item} className="manager-summary-item">
-              <div className="manager-summary-dot" />
-              <span>{item}</span>
-            </div>
-          ))}
-        </div>
       </Card>
 
       <Card>
