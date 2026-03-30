@@ -195,10 +195,10 @@ export default async function DashboardPage({
             <small>Клиник с критическими флагами</small>
           </div>
 
-          <div className="manager-overview-box">
-            <strong>{periodLabel}</strong>
-            <span>Срез применён ко всем блокам</span>
-            <small>Фильтры и KPI ниже продолжают этот контекст</small>
+          <div className="manager-overview-box manager-overview-box-warning">
+            <span>Красная зона</span>
+            <strong>{riskCount}</strong>
+            <small>Клиник с итоговым баллом ниже 50%</small>
           </div>
         </div>
       </Card>
