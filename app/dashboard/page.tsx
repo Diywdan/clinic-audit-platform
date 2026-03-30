@@ -6,7 +6,6 @@ import {
   Building2,
   ClipboardList,
   ShieldAlert,
-  Sparkles,
   TrendingUp,
 } from "lucide-react";
 
@@ -25,10 +24,10 @@ export default async function DashboardPage({
 }) {
   const session = await requireDashboardAccess();
   const params = await searchParams;
-
   const clinicId =
     typeof params.clinicId === "string" ? params.clinicId : undefined;
-  const from = typeof params.from === "string" ? parseISO(params.from) : undefined;
+  const from =
+    typeof params.from === "string" ? parseISO(params.from) : undefined;
   const to = typeof params.to === "string" ? parseISO(params.to) : undefined;
 
   const { clinics, ranking, trends, blockComparison } =
@@ -36,7 +35,8 @@ export default async function DashboardPage({
 
   const averageNetworkScore = ranking.length
     ? Math.round(
-        ranking.reduce((sum, item) => sum + item.averageScore, 0) / ranking.length
+        ranking.reduce((sum, item) => sum + item.averageScore, 0) /
+          ranking.length
       )
     : 0;
 
@@ -54,6 +54,14 @@ export default async function DashboardPage({
 
   const leader = ranking[0];
   const weakest = ranking[ranking.length - 1];
+  const clinicWithCritical = ranking.find(
+    (item) => item.criticalViolations > 0
+  );
+  const clinicWithNegativeTrend = ranking.find((item) => item.trend < 0);
+  const clinicWithPositiveTrend = ranking.find((item) => item.trend > 0);
+  const stableHighPerformer = ranking.find(
+    (item) => item.criticalViolations === 0 && item.averageScore >= 80
+  );
 
   const selectedClinicName = clinicId
     ? clinics.find((clinic) => clinic.id === clinicId)?.name ??
@@ -68,7 +76,6 @@ export default async function DashboardPage({
     ? `по ${format(to, "dd.MM.yyyy")}`
     : "Весь период";
 
-
   const attentionItems = [
     weakest
       ? {
@@ -77,18 +84,17 @@ export default async function DashboardPage({
           description: "Наихудший итоговый балл по текущей выборке",
         }
       : null,
-    ranking.find((item) => item.criticalViolations > 0)
+    clinicWithCritical
       ? {
-          title: ranking.find((item) => item.criticalViolations > 0)!.clinicName,
-          value: `${ranking.find((item) => item.criticalViolations > 0)!.criticalViolations}`,
-          description:
-            "Критические нарушения требуют управленческого внимания",
+          title: clinicWithCritical.clinicName,
+          value: `${clinicWithCritical.criticalViolations}`,
+          description: "Критические нарушения требуют управленческого внимания",
         }
       : null,
-    ranking.find((item) => item.trend < 0)
+    clinicWithNegativeTrend
       ? {
-          title: ranking.find((item) => item.trend < 0)!.clinicName,
-          value: `${ranking.find((item) => item.trend < 0)!.trend}%`,
+          title: clinicWithNegativeTrend.clinicName,
+          value: `${clinicWithNegativeTrend.trend}%`,
           description: "Отрицательная динамика за выбранный период",
         }
       : null,
@@ -106,21 +112,16 @@ export default async function DashboardPage({
           description: "Лучший итоговый балл по текущей выборке",
         }
       : null,
-    ranking.find((item) => item.trend > 0)
+    clinicWithPositiveTrend
       ? {
-          title: ranking.find((item) => item.trend > 0)!.clinicName,
-          value: `+${ranking.find((item) => item.trend > 0)!.trend}%`,
+          title: clinicWithPositiveTrend.clinicName,
+          value: `+${clinicWithPositiveTrend.trend}%`,
           description: "Наиболее заметный положительный тренд за период",
         }
       : null,
-    ranking.find(
-      (item) => item.criticalViolations === 0 && item.averageScore >= 80
-    )
+    stableHighPerformer
       ? {
-          title: ranking.find(
-            (item) =>
-              item.criticalViolations === 0 && item.averageScore >= 80
-          )!.clinicName,
+          title: stableHighPerformer.clinicName,
           value: "без критики",
           description:
             "Сильный объект без критических нарушений в текущем периоде",
@@ -142,37 +143,32 @@ export default async function DashboardPage({
     >
       <Card className="manager-hero-card">
         <div className="manager-hero-head">
-          <div>
+          <div className="manager-hero-content">
             <p className="eyebrow">Управленческий обзор</p>
-            <h3>Качество сервиса по сети клиник за выбранный период.</h3>
+            <h3>Сводка качества по текущему управленческому срезу</h3>
             <p className="manager-hero-text">
-              Верхний уровень экрана показывает общую ситуацию, риски и ключевые
-              выводы. Ниже — фильтры, рейтинг, графики и детализация по клиникам.
+              Фокус верхнего экрана: период, контур и ключевые сигналы для
+              руководителя. Ниже — фильтры и основные KPI.
             </p>
+
+            <div className="manager-hero-context">
+              <div className="manager-context-chip">
+                <span>Период</span>
+                <strong>{periodLabel}</strong>
+              </div>
+              <div className="manager-context-chip">
+                <span>Контур</span>
+                <strong>{selectedClinicName}</strong>
+              </div>
+            </div>
           </div>
 
           <div className="manager-hero-actions">
             <DashboardExportActions />
-            <div className="manager-action-chip manager-action-chip-muted">
-              <Sparkles size={16} />
-              <span>Экспортирует текущий срез dashboard</span>
-            </div>
           </div>
         </div>
 
         <div className="manager-overview-grid">
-          <div className="manager-overview-box">
-            <span>Период отчёта</span>
-            <strong>{periodLabel}</strong>
-            <small>Актуальная выборка для всех показателей на экране</small>
-          </div>
-
-          <div className="manager-overview-box">
-            <span>Контур</span>
-            <strong>{selectedClinicName}</strong>
-            <small>Текущий срез по всей сети или выбранной клинике</small>
-          </div>
-
           <div className="manager-overview-box">
             <span>Лидер периода</span>
             <strong>
@@ -180,7 +176,7 @@ export default async function DashboardPage({
                 ? `${leader.clinicName} — ${leader.averageScore}%`
                 : "Недостаточно данных"}
             </strong>
-            <small>Лучший результат по текущей выборке</small>
+            <small>Лучший итоговый результат</small>
           </div>
 
           <div className="manager-overview-box manager-overview-box-danger">
@@ -190,11 +186,29 @@ export default async function DashboardPage({
                 ? `${weakest.clinicName} — ${weakest.averageScore}%`
                 : "Не определён"}
             </strong>
-            <small>Наихудший результат по текущей выборке</small>
+            <small>Наиболее уязвимая точка среза</small>
+          </div>
+
+          <div className="manager-overview-box">
+            <span>Критические нарушения</span>
+            <strong>{criticalCount}</strong>
+            <small>Клиник с критическими флагами</small>
+          </div>
+
+          <div className="manager-overview-box">
+            <strong>{periodLabel}</strong>
+            <span>Срез применён ко всем блокам</span>
+            <small>Фильтры и KPI ниже продолжают этот контекст</small>
           </div>
         </div>
-
       </Card>
+
+      <div className="manager-flow-anchor">
+        <span>Рабочий контур отчёта</span>
+        <p>
+          Уточните фильтры — KPI, рейтинг и графики обновятся в этом же срезе.
+        </p>
+      </div>
 
       <Card>
         <DashboardFilters clinics={clinics} />
@@ -390,68 +404,7 @@ export default async function DashboardPage({
                   <th>Статус</th>
                 </tr>
               </thead>
-              <tbody>
-                {ranking.map((row, index) => (
-                  <tr key={row.clinicId}>
-                    <td>
-                      <div className="manager-clinic-cell">
-                        <div className="manager-rank-badge">#{index + 1}</div>
-                        <div>
-                          <strong>
-                            <Link
-                              href={`/clinics/${row.clinicId}`}
-                              className="inline-link"
-                            >
-                              {row.clinicName}
-                            </Link>
-                          </strong>
-                          <div className="manager-clinic-subline">
-                            {row.criticalViolations > 0
-                              ? `Критических нарушений: ${row.criticalViolations}`
-                              : "Критических флагов нет"}
-                          </div>
-                        </div>
-                      </div>
-                    </td>
-
-                    <td>
-                      <span className="manager-score-pill">
-                        {row.averageScore}%
-                      </span>
-                    </td>
-
-                    {row.blocks.map((block) => (
-                      <td key={block.blockId}>
-                        <span className="manager-block-pill">
-                          {block.score}%
-                        </span>
-                      </td>
-                    ))}
-
-                    <td>{row.evaluations}</td>
-
-                    <td>
-                      <span
-                        className={`manager-trend-pill ${
-                          row.trend > 0
-                            ? "manager-trend-up"
-                            : row.trend < 0
-                            ? "manager-trend-down"
-                            : "manager-trend-flat"
-                        }`}
-                      >
-                        {row.trend > 0 ? `+${row.trend}` : row.trend}%
-                      </span>
-                    </td>
-
-                    <td>
-                      <span className={`status-pill ${row.status.className}`}>
-                        {row.status.label}
-                      </span>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
+              <tbody></tbody>
             </table>
           </div>
         </Card>
@@ -476,7 +429,6 @@ export default async function DashboardPage({
                   сигнализировать о начале просадки.
                 </p>
               </div>
-
               <div className="manager-insight-item">
                 <strong>Потом сверяйте блоки</strong>
                 <p>
@@ -484,7 +436,6 @@ export default async function DashboardPage({
                   а где локальная.
                 </p>
               </div>
-
               <div className="manager-insight-item">
                 <strong>Фильтры меняют весь срез</strong>
                 <p>

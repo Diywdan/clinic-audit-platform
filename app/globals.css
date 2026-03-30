@@ -2636,3 +2636,164 @@ input[type="file"] {
     align-items: flex-start;
   }
 }
+
+.manager-hero-card {
+  overflow: hidden;
+  background: linear-gradient(180deg, #ffffff 0%, #f8fbff 100%);
+  border: 1px solid var(--line);
+}
+
+.manager-hero-head {
+  display: flex;
+  justify-content: space-between;
+  gap: 24px;
+  align-items: flex-start;
+}
+
+.manager-hero-content {
+  max-width: 760px;
+}
+
+.manager-hero-head h3 {
+  margin: 0;
+  font-family: Manrope, "Segoe UI", sans-serif;
+  font-size: 1.55rem;
+  letter-spacing: -0.01em;
+}
+
+.manager-hero-text {
+  margin: 10px 0 0;
+  color: var(--muted);
+  max-width: 62ch;
+  line-height: 1.6;
+}
+
+.manager-hero-context {
+  margin-top: 16px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.manager-context-chip {
+  display: grid;
+  gap: 4px;
+  min-width: 220px;
+  padding: 10px 14px;
+  border-radius: 14px;
+  border: 1px solid var(--line);
+  background: #ffffff;
+}
+
+.manager-context-chip span {
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--muted);
+  font-weight: 700;
+}
+
+.manager-context-chip strong {
+  font-size: 0.92rem;
+  font-family: Manrope, "Segoe UI", sans-serif;
+}
+
+.manager-hero-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: flex-end;
+}
+
+.manager-export-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: flex-end;
+}
+
+.manager-export-actions a {
+  text-decoration: none;
+}
+
+.manager-overview-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 10px;
+  margin-top: 18px;
+}
+
+.manager-overview-box {
+  padding: 14px;
+  border-radius: 14px;
+  border: 1px solid var(--line);
+  background: #ffffff;
+}
+
+.manager-overview-box span {
+  display: block;
+  color: var(--muted);
+  font-size: 0.74rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-weight: 700;
+}
+
+.manager-overview-box strong {
+  display: block;
+  margin-top: 8px;
+  font-size: 1rem;
+  font-family: Manrope, "Segoe UI", sans-serif;
+  line-height: 1.35;
+}
+
+.manager-overview-box small {
+  display: block;
+  margin-top: 6px;
+  font-size: 0.8rem;
+  color: var(--muted);
+  line-height: 1.4;
+}
+
+.manager-overview-box-danger {
+  background: #fff8f8;
+  border-color: rgba(220, 38, 38, 0.2);
+}
+
+.manager-flow-anchor {
+  padding: 2px 2px 0;
+  margin-top: -4px;
+}
+
+.manager-flow-anchor span {
+  display: block;
+  font-size: 0.74rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--muted);
+  font-weight: 700;
+}
+
+.manager-flow-anchor p {
+  margin: 6px 0 0;
+  color: #526173;
+  font-size: 0.92rem;
+}
+
+@media (max-width: 1100px) {
+  .manager-overview-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .manager-hero-head {
+    flex-direction: column;
+  }
+
+  .manager-hero-actions {
+    align-items: flex-start;
+  }
+
+  .manager-context-chip {
+    min-width: 100%;
+  }
+}
