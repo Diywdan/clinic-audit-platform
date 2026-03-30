@@ -85,7 +85,7 @@ export function AppShell({ title, subtitle, role, children }: AppShellProps) {
       </aside>
       <main className="content">
         <header className="topbar">
-          <div className="topbar-brand"></div>
+          <div className="topbar-brand">Жалоба как подарок</div>
           <div className="topbar-tools">
             {showSearch ? (
               <label className="searchbox">

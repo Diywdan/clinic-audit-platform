@@ -25,11 +25,7 @@ export function DashboardCharts({
     <div className="manager-chart-section">
       <div className="section-heading manager-chart-heading">
         <div>
-          <h3>Нижний аналитический слой</h3>
-          <p>
-            Графики помогают подтвердить выводы сверху и уточнить, где ситуация
-            ухудшается или стабилизируется.
-          </p>
+          <h3>Графики</h3>
         </div>
       </div>
 
@@ -38,7 +34,6 @@ export function DashboardCharts({
           <div className="section-heading">
             <div>
               <h3>Динамика рейтинга</h3>
-              <p>Итоговый взвешенный балл по отфильтрованным проверкам</p>
             </div>
             <span className="manager-chart-chip">Тренд во времени</span>
           </div>

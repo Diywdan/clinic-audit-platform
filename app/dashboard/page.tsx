@@ -198,13 +198,6 @@ export default async function DashboardPage({
         </div>
       </Card>
 
-      <div className="manager-flow-anchor">
-        <span>Рабочий контур отчёта</span>
-        <p>
-          Уточните фильтры — KPI, рейтинг и графики обновятся в этом же срезе.
-        </p>
-      </div>
-
       <Card>
         <DashboardFilters clinics={clinics} />
       </Card>
@@ -284,10 +277,6 @@ export default async function DashboardPage({
           <div className="section-heading">
             <div>
               <h3>Требует внимания</h3>
-              <p>
-                Клиники и сигналы, на которые руководителю стоит посмотреть в
-                первую очередь
-              </p>
             </div>
           </div>
 
@@ -321,9 +310,6 @@ export default async function DashboardPage({
           <div className="section-heading">
             <div>
               <h3>Лидеры и сильные практики</h3>
-              <p>
-                Клиники, на которые можно опереться как на ориентир для сети
-              </p>
             </div>
           </div>
 

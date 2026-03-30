@@ -54,11 +54,7 @@ export default async function ClinicsPage({
       <Card className="clinic-list-hero">
         <div className="clinic-list-hero-head">
           <div>
-            <p className="eyebrow">Контур объектов</p>
-            <h3>Управление поликлиниками сети в одном списке</h3>
-            <p className="clinic-list-hero-text">
-              Быстрый вход в проблемные и сильные объекты: рейтинг, статус, тренд и фотоматериалы по каждой поликлинике.
-            </p>
+            <h3>Поликлиники сети</h3>
           </div>
           <div className="clinic-list-hero-meta">
             <span>Объектов в выборке</span>
