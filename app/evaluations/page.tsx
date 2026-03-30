@@ -43,12 +43,13 @@ export default async function EvaluationsPage() {
           <div>
             <p className="eyebrow">Первый экран оценщика</p>
             <h3>
-              Начните новую проверку или продолжайте работать с текущим потоком.
+              Начните новую проверку и держите текущий поток под контролем.
             </h3>
             <p className="evaluator-hero-text">
-              Сначала выберите клинику, затем пройдите критерии по блокам и
-              приложите фотографии. Всё, что нужно для отправки проверки, уже
-              собрано ниже на одной странице.
+              Выберите клинику, пройдите критерии по блокам 
+              и приложите фотографии. Всё нужное для проверки 
+              собрано на одной странице.
+              
             </p>
           </div>
 
@@ -62,15 +63,14 @@ export default async function EvaluationsPage() {
           <div className="evaluator-quickstart-card">
             <span className="evaluator-quickstart-step">Шаг 1</span>
             <strong>Выберите клинику</strong>
-            <p>Определите объект проверки перед заполнением критериев.</p>
+            <p>Сначала выберите объект проверки.</p>
           </div>
 
           <div className="evaluator-quickstart-card">
             <span className="evaluator-quickstart-step">Шаг 2</span>
             <strong>Пройдите критерии по блокам</strong>
             <p>
-              Отмечайте ответы последовательно и не пропускайте критические
-              пункты.
+              Отвечайте по блокам и не пропускайте критические пункты.
             </p>
           </div>
 
@@ -78,7 +78,7 @@ export default async function EvaluationsPage() {
             <span className="evaluator-quickstart-step">Шаг 3</span>
             <strong>Приложите фото и отправьте</strong>
             <p>
-              Минимум 3 фотографии и комментарий — и проверка уйдёт в систему.
+              Добавьте минимум 3 фото и комментарий — после этого проверку можно отправить.
             </p>
           </div>
         </div>
@@ -99,7 +99,7 @@ export default async function EvaluationsPage() {
             </div>
             <span>Средний результат</span>
             <strong>{averageScore}%</strong>
-            <small>По последним отправленным проверкам</small>
+            <small>По последним проверкам</small>
           </div>
 
           <div className="evaluator-kpi-box">
@@ -108,7 +108,7 @@ export default async function EvaluationsPage() {
             </div>
             <span>Загружено фото</span>
             <strong>{totalPhotos}</strong>
-            <small>Во всех последних отправках</small>
+            <small>Во всех недавних отправках</small>
           </div>
         </div>
       </Card>
