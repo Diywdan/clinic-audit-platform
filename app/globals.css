@@ -1593,17 +1593,17 @@ input[type="file"] {
 }
 
 .audit-submit-bar {
-  position: sticky;
-  bottom: 16px;
-  z-index: 25;
+  display: flex;
+  justify-content: center;
+  margin-top: 8px;
 }
 
 .audit-submit-button {
-  width: 100%;
-  min-height: 58px;
+  width: min(100%, 360px);
+  min-height: 54px;
   font-size: 1rem;
   font-weight: 800;
-  border-radius: 18px;
+  border-radius: 16px;
 }
 
 .audit-hidden-input {
