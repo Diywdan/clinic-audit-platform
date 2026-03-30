@@ -88,11 +88,12 @@ textarea {
 }
 
 .eyebrow {
-  margin: 0 0 4px;
-  font-size: 0.72rem;
-  letter-spacing: 0.18em;
+  margin: 0 0 6px;
+  font-size: 0.7rem;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
   color: var(--muted);
+  font-weight: 700;
 }
 
 .nav {
@@ -208,12 +209,24 @@ textarea {
 }
 
 .page-header {
-  margin-bottom: 20px;
+  margin-bottom: 22px;
+}
+
+.page-header h2 {
+  font-size: 2rem;
+  line-height: 1.05;
+}
+
+.section-heading h3 {
+  font-size: 1.22rem;
+  line-height: 1.15;
 }
 
 .page-subtitle {
-  margin: 8px 0 0;
+  margin: 10px 0 0;
   color: var(--muted);
+  max-width: 64ch;
+  line-height: 1.6;
 }
 
 .page-content {
@@ -226,9 +239,9 @@ textarea {
   background: var(--surface);
   border: 1px solid rgba(220, 228, 238, 0.95);
   box-shadow: var(--shadow);
-  border-radius: 20px;
-  padding: 22px;
-  backdrop-filter: blur(10px);
+  border-radius: 18px;
+  padding: 20px;
+  backdrop-filter: blur(8px);
 }
 
 .stack-sm,
@@ -484,12 +497,13 @@ input[type="file"] {
   align-items: flex-end;
   justify-content: space-between;
   gap: 14px;
-  margin-bottom: 16px;
+  margin-bottom: 14px;
 }
 
 .section-heading p {
   margin: 6px 0 0;
   color: var(--muted);
+  line-height: 1.55;
 }
 
 .evaluation-toolbar,
@@ -532,7 +546,7 @@ input[type="file"] {
 }
 
 .kpi-card {
-  border-left: 4px solid var(--accent);
+  border-left: 3px solid var(--accent);
 }
 
 .kpi-secondary {
@@ -557,7 +571,8 @@ input[type="file"] {
 .kpi-row h3 {
   margin: 8px 0 4px;
   font-family: Manrope, sans-serif;
-  font-size: 2rem;
+  font-size: 1.85rem;
+  line-height: 1;
 }
 
 .kpi-row p {
