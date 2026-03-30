@@ -31,8 +31,8 @@ export default async function ClinicDetailPage({
       subtitle="История проверок, фотографии и аналитика по выбранному объекту"
       role={session.user.role}
     >
-      <section className="clinic-hero">
-        <div>
+      <section className="clinic-hero clinic-hero-compact">
+        <div className="clinic-hero-main">
           <Link href="/clinics" className="clinic-back-link">
             <ArrowLeft size={16} />
             <span>Назад к списку</span>
@@ -44,7 +44,7 @@ export default async function ClinicDetailPage({
             <span>{data.clinic.address}</span>
           </div>
         </div>
-        <div className="clinic-hero-score">
+        <div className="clinic-hero-score clinic-hero-score-compact">
           <div>
             <span>Общий рейтинг</span>
             <strong>{data.averageScore}%</strong>
@@ -159,13 +159,19 @@ export default async function ClinicDetailPage({
             </Card>
           </div>
 
-          <Card>
-            <div className="section-heading">
-              <h3>Последние проверки</h3>
-              <p>История оценок по выбранной поликлинике</p>
+          <Card className="clinic-history-card">
+            <div className="section-heading clinic-history-heading">
+              <div>
+                <h3>Последние проверки</h3>
+                <p>История оценок по выбранной поликлинике</p>
+              </div>
+              <div className="clinic-history-meta">
+                <span>Проверок</span>
+                <strong>{data.evaluations.length}</strong>
+              </div>
             </div>
             <div className="table-wrap">
-              <table className="table">
+              <table className="table clinic-history-table">
                 <thead>
                   <tr>
                     <th>Дата</th>
@@ -177,7 +183,7 @@ export default async function ClinicDetailPage({
                 </thead>
                 <tbody>
                   {data.evaluations.map((evaluation) => (
-                    <tr key={evaluation.id}>
+                    <tr key={evaluation.id} className={data.selectedEvaluation?.id === evaluation.id ? "clinic-history-row-active" : undefined}>
                       <td>{new Date(evaluation.createdAt).toLocaleDateString("ru-RU")}</td>
                       <td>
                         <Link
@@ -203,8 +209,8 @@ export default async function ClinicDetailPage({
 
           {data.selectedEvaluation ? (
             <>
-              <Card>
-                <div className="section-heading">
+              <Card className="clinic-selected-report-card">
+                <div className="section-heading clinic-selected-report-heading">
                   <div>
                     <h3>Полный отчет по выбранной проверке</h3>
                     <p>
