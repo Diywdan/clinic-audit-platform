@@ -2361,7 +2361,9 @@ input[type="file"] {
   }
 
   .audit-sticky-card {
-    top: 74px;
+    position: static;
+    top: auto;
+    padding: 16px;
   }
 
   .audit-topbar,
@@ -2372,12 +2374,49 @@ input[type="file"] {
     align-items: stretch;
   }
 
+  .audit-title {
+    font-size: 1.15rem;
+  }
+
+  .audit-subtitle {
+    margin-top: 4px;
+    font-size: 0.92rem;
+    line-height: 1.5;
+  }
+
   .audit-clinic-field {
     min-width: 0;
   }
 
   .audit-progress-meta {
+    min-width: 0;
     text-align: left;
+    font-size: 0.95rem;
+  }
+
+  .audit-progress-meta span {
+    margin-bottom: 2px;
+    font-size: 0.78rem;
+  }
+
+  .progress-rail {
+    margin-top: 10px;
+  }
+
+  .audit-summary-row {
+    gap: 8px;
+    margin-top: 10px;
+  }
+
+  .audit-summary-box {
+    min-width: 0;
+    padding: 10px 12px;
+    border-radius: 14px;
+  }
+
+  .audit-summary-box strong {
+    margin-top: 4px;
+    font-size: 0.98rem;
   }
 
   .audit-option-grid,
@@ -2388,8 +2427,38 @@ input[type="file"] {
     grid-template-columns: 1fr;
   }
 
+  .audit-block-card {
+    padding: 18px;
+  }
+
+  .audit-question-card {
+    padding: 14px;
+    border-radius: 16px;
+  }
+
   .audit-question-card h4 {
-    font-size: 1.05rem;
+    font-size: 1rem;
+    margin-bottom: 12px;
+  }
+
+  .audit-option-tile {
+    min-height: 82px;
+    padding: 12px 14px;
+    border-radius: 14px;
+  }
+
+  .audit-option-icon {
+    width: 24px;
+    height: 24px;
+    font-size: 0.82rem;
+  }
+
+  .audit-option-tile strong {
+    font-size: 0.92rem;
+  }
+
+  .audit-option-caption {
+    font-size: 0.66rem;
   }
 
   .audit-section-title {
@@ -2407,6 +2476,20 @@ input[type="file"] {
   .evaluator-hero-badge,
   .evaluator-submission-badge {
     white-space: normal;
+  }
+
+  .mobile-nav {
+    left: 10px;
+    right: 10px;
+    bottom: 10px;
+    padding: 8px;
+    border-radius: 18px;
+  }
+
+  .mobile-link {
+    gap: 4px;
+    padding: 8px 4px;
+    font-size: 0.68rem;
   }
 
   .evaluator-history-meta {
