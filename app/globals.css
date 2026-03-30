@@ -2478,10 +2478,25 @@ input[type="file"] {
 .manager-table-wrap {
   border-radius: 18px;
   border: 1px solid var(--line);
+  background: #ffffff;
+}
+
+.manager-table {
+  color: var(--ink);
 }
 
 .manager-table thead th {
   background: #f8fbff;
+  color: var(--ink);
+}
+
+.manager-table td,
+.manager-table th {
+  color: var(--ink);
+}
+
+.manager-table tbody tr {
+  background: #ffffff;
 }
 
 .manager-table tbody tr:hover {
