@@ -32,7 +32,7 @@ button, input, select, textarea { font: inherit; }
 .sidebar { padding: 24px 18px; background: #f8fbff; color: var(--ink); display: flex; flex-direction: column; gap: 20px; border-right: 1px solid var(--line); }
 .brand { display: flex; gap: 14px; align-items: center; }
 .brand-mark { width: 42px; height: 42px; border-radius: 14px; display: grid; place-items: center; background: linear-gradient(180deg, var(--accent) 0%, var(--accent-strong) 100%); color: white; box-shadow: 0 10px 20px rgba(37, 99, 235, 0.2); }
-.brand h1, .page-header h2, .section-heading h3, .topbar-brand, .login-logo h1 { margin: 0; font-family: Manrope, "Segoe UI", sans-serif; letter-spacing: -0.03em; }
+.brand h1, .page-header h2, .section-heading h3, .topbar-brand, .login-logo h1, .login-logo h2, .login-intro h1 { margin: 0; font-family: Manrope, "Segoe UI", sans-serif; letter-spacing: -0.03em; }
 .eyebrow { margin: 0 0 4px; font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); }
 .nav { display: flex; flex-direction: column; gap: 10px; }
 .nav-link { display: flex; align-items: center; gap: 12px; padding: 12px 14px; border-radius: 14px; color: #526173; font-weight: 600; }
@@ -87,22 +87,24 @@ button, input, select, textarea { font: inherit; }
 .field span { font-size: 0.75rem; color: #737686; text-transform: uppercase; font-weight: 700; letter-spacing: 0.12em; }
 .login-screen { min-height: 100vh; display: grid; place-items: center; padding: 24px; background: linear-gradient(135deg, #2563eb 0%, #7da0df 100%); position: relative; overflow: hidden; }
 .login-grid { position: absolute; inset: 24px; border-radius: 18px; border: 2px solid rgba(123, 97, 255, 0.35); background-image: linear-gradient(rgba(255,255,255,0.12) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.12) 1px, transparent 1px); background-size: 52px 52px; }
-.login-panel { position: relative; z-index: 1; width: min(100%, 520px); display: flex; flex-direction: column; align-items: center; }
-.login-card { width: min(100%, 440px); padding: 32px 28px; }
+.login-panel { position: relative; z-index: 1; width: min(100%, 1080px); display: grid; grid-template-columns: minmax(0, 1fr) minmax(360px, 440px); gap: 32px; align-items: center; }
+.login-intro { color: white; display: flex; flex-direction: column; gap: 18px; max-width: 560px; }
+.login-intro-badge { width: fit-content; display: inline-flex; align-items: center; gap: 8px; padding: 8px 12px; border-radius: 999px; background: rgba(255,255,255,0.14); border: 1px solid rgba(255,255,255,0.24); font-size: 0.78rem; font-weight: 700; }
+.login-intro h1 { font-size: clamp(2.4rem, 4vw, 4rem); font-weight: 800; line-height: 0.95; }
+.login-intro-text { margin: 0; font-size: 1.05rem; line-height: 1.7; color: rgba(255,255,255,0.86); max-width: 48ch; }
+.login-highlight-list { display: flex; flex-direction: column; gap: 12px; margin-top: 6px; }
+.login-highlight-item { display: flex; align-items: flex-start; gap: 10px; color: rgba(255,255,255,0.92); }
+.login-highlight-item svg { margin-top: 2px; flex-shrink: 0; }
+.login-card { width: min(100%, 440px); justify-self: end; padding: 32px 28px; }
 .login-logo { display: flex; flex-direction: column; align-items: center; text-align: center; margin-bottom: 28px; }
 .login-logo-icon { width: 58px; height: 58px; border-radius: 18px; display: grid; place-items: center; background: #edf2ff; color: var(--accent); margin-bottom: 14px; }
-.login-logo h1 { font-size: 2rem; font-weight: 800; margin-bottom: 8px; }
-.login-logo p { margin: 0; color: var(--muted); font-size: 0.95rem; }
+.login-logo h2 { font-size: 1.75rem; font-weight: 800; margin-bottom: 8px; }
+.login-logo p { margin: 0; color: var(--muted); font-size: 0.95rem; line-height: 1.6; }
 .input-with-icon { position: relative; display: flex; align-items: center; color: #8b96a8; }
 .input-with-icon svg { position: absolute; left: 14px; z-index: 1; }
 .input-with-icon .input { padding-left: 40px; }
-.login-meta { display: flex; align-items: center; justify-content: space-between; gap: 10px; font-size: 0.8rem; color: var(--muted); }
-.checkbox-row { display: flex; align-items: center; gap: 8px; }
-.forgot-link { color: var(--accent); font-weight: 700; }
-.login-footer { margin-top: 22px; padding-top: 18px; border-top: 1px solid var(--line); display: flex; flex-direction: column; gap: 14px; align-items: center; text-align: center; color: var(--muted); font-size: 0.8rem; }
-.biometry-button { height: 34px; padding: 0 14px; border-radius: 999px; border: 1px solid var(--line); background: #f5f7fb; display: inline-flex; align-items: center; gap: 8px; font-size: 0.7rem; text-transform: uppercase; font-weight: 700; letter-spacing: 0.08em; color: #4b5565; }
-.login-copyright { margin-top: 18px; color: rgba(255,255,255,0.72); font-size: 0.75rem; }
-.helper-box { margin-top: 16px; padding-top: 16px; border-top: 1px solid var(--line); color: var(--muted); }
+.login-footer { margin-top: 22px; padding-top: 18px; border-top: 1px solid var(--line); display: flex; flex-direction: column; gap: 10px; align-items: center; text-align: center; color: var(--muted); font-size: 0.85rem; line-height: 1.6; }
+.login-copyright { margin-top: 18px; color: rgba(255,255,255,0.72); font-size: 0.75rem; grid-column: 1 / -1; text-align: center; }
 .section-heading { display: flex; align-items: flex-end; justify-content: space-between; gap: 14px; margin-bottom: 16px; }
 .section-heading p { margin: 6px 0 0; color: var(--muted); }
 .evaluation-toolbar, .metrics-grid, .dashboard-grid { display: grid; gap: 18px; }
@@ -268,9 +270,11 @@ button, input, select, textarea { font: inherit; }
   .mobile-nav { position: fixed; left: 12px; right: 12px; bottom: 12px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; padding: 10px; border-radius: 22px; background: rgba(255,255,255,0.94); backdrop-filter: blur(18px); box-shadow: var(--shadow); border: 1px solid var(--line); z-index: 50; }
   .mobile-link { display: flex; flex-direction: column; align-items: center; gap: 6px; padding: 10px 6px; border-radius: 16px; font-size: 0.72rem; color: var(--muted); font-weight: 700; }
   .mobile-link-active { background: #eff5ff; color: var(--accent-strong); }
+  .login-panel { grid-template-columns: 1fr; gap: 24px; }
+  .login-intro { max-width: none; text-align: center; align-items: center; }
+  .login-highlight-item { text-align: left; }
   .login-grid { inset: 8px; }
-  .login-card { padding: 26px 20px; }
-  .login-meta { flex-direction: column; align-items: flex-start; }
+  .login-card { width: 100%; justify-self: stretch; padding: 26px 20px; }
   .audit-sticky-card { top: 74px; }
   .audit-topbar, .audit-topbar-actions, .audit-summary-row { flex-direction: column; align-items: stretch; }
   .audit-clinic-field { min-width: 0; }
