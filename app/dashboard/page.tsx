@@ -404,7 +404,54 @@ export default async function DashboardPage({
                   <th>Статус</th>
                 </tr>
               </thead>
-              <tbody></tbody>
+              <tbody>
+                {ranking.map((row, index) => (
+                  <tr key={row.clinicId}>
+                    <td>
+                      <div className="manager-clinic-cell">
+                        <div className="manager-rank-badge">#{index + 1}</div>
+                        <div>
+                          <strong>
+                            <Link href={`/clinics/${row.clinicId}`} className="inline-link">
+                              {row.clinicName}
+                            </Link>
+                          </strong>
+                          <div className="manager-clinic-subline">
+                            {row.criticalViolations > 0
+                              ? `Критических нарушений: ${row.criticalViolations}`
+                              : "Критических флагов нет"}
+                          </div>
+                        </div>
+                      </div>
+                    </td>
+                    <td>
+                      <span className="manager-score-pill">{row.averageScore}%</span>
+                    </td>
+                    {row.blocks.map((block) => (
+                      <td key={block.blockId}>
+                        <span className="manager-block-pill">{block.score}%</span>
+                      </td>
+                    ))}
+                    <td>{row.evaluations}</td>
+                    <td>
+                      <span
+                        className={`manager-trend-pill ${
+                          row.trend > 0
+                            ? "manager-trend-up"
+                            : row.trend < 0
+                              ? "manager-trend-down"
+                              : "manager-trend-flat"
+                        }`}
+                      >
+                        {row.trend > 0 ? `+${row.trend}` : row.trend}%
+                      </span>
+                    </td>
+                    <td>
+                      <span className={`status-pill ${row.status.className}`}>{row.status.label}</span>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
             </table>
           </div>
         </Card>
