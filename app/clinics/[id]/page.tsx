@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ArrowLeft, ImageIcon, MapPin } from "lucide-react";
+import { ArrowLeft, ImageIcon, MapPin, ShieldAlert, TrendingUp } from "lucide-react";
 
 import { BlockComparisonChart } from "@/components/charts/block-comparison-chart";
 import { ScoreTrendChart } from "@/components/charts/score-trend-chart";
@@ -56,11 +56,49 @@ export default async function ClinicDetailPage({
         </div>
       </section>
 
-      <div className="clinic-detail-grid">
-        <div className="clinic-detail-side">
-          <Card>
+      <div className="clinic-detail-layout">
+        <div className="clinic-detail-main">
+          <div className="clinic-detail-summary-grid">
+            <Card className="clinic-detail-summary-card">
+              <div className="clinic-detail-summary-icon clinic-detail-summary-icon-primary">
+                <TrendingUp size={18} />
+              </div>
+              <span>Средний рейтинг</span>
+              <strong>{data.averageScore}%</strong>
+              <small>Текущий результат по объекту</small>
+            </Card>
+            <Card className="clinic-detail-summary-card clinic-detail-summary-card-warning">
+              <div className="clinic-detail-summary-icon clinic-detail-summary-icon-warning">
+                <ShieldAlert size={18} />
+              </div>
+              <span>Критические нарушения</span>
+              <strong>{data.criticalViolations}</strong>
+              <small>Выявлено по последним проверкам</small>
+            </Card>
+            <Card className="clinic-detail-summary-card">
+              <div className="clinic-detail-summary-icon clinic-detail-summary-icon-neutral">
+                <ImageIcon size={18} />
+              </div>
+              <span>Фотоматериалы</span>
+              <strong>{data.photos.length}</strong>
+              <small>Доступно в истории объекта</small>
+            </Card>
+            <Card className="clinic-detail-summary-card">
+              <div className="clinic-detail-summary-icon clinic-detail-summary-icon-primary">
+                <MapPin size={18} />
+              </div>
+              <span>Проверок</span>
+              <strong>{data.evaluationsCount}</strong>
+              <small>{data.clinic.latitude}, {data.clinic.longitude}</small>
+            </Card>
+          </div>
+
+          <Card className="clinic-detail-blocks-card">
             <div className="section-heading">
-              <h3>Разбивка по блокам</h3>
+              <div>
+                <h3>Разбивка по блокам</h3>
+                <p>Где объект выглядит устойчиво, а где требует доработки</p>
+              </div>
             </div>
             <div className="clinic-bars">
               {data.blockAverages.map((block) => (
@@ -76,17 +114,6 @@ export default async function ClinicDetailPage({
               ))}
             </div>
           </Card>
-          <Card className="clinic-callout">
-            <h3>Сводка по объекту</h3>
-            <p>Проверок: {data.evaluationsCount}</p>
-            <p>Критических нарушений: {data.criticalViolations}</p>
-            <p>
-              Координаты: {data.clinic.latitude}, {data.clinic.longitude}
-            </p>
-          </Card>
-        </div>
-
-        <div className="clinic-detail-main">
           <Card>
             <div className="section-heading">
               <h3>Фотоматериалы</h3>
