@@ -2196,7 +2196,63 @@ input[type="file"] {
 .clinic-report-stack {
   display: flex;
   flex-direction: column;
-  gap: 18px;
+  gap: 14px;
+}
+
+.clinic-report-details {
+  display: block;
+}
+
+.clinic-report-summary {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 16px 18px;
+  border-radius: 18px;
+  border: 1px solid var(--line);
+  background: linear-gradient(180deg, #ffffff 0%, #fbfdff 100%);
+  cursor: pointer;
+}
+
+.clinic-report-summary::-webkit-details-marker {
+  display: none;
+}
+
+.clinic-report-summary h3 {
+  margin: 0;
+  font-family: Manrope, "Segoe UI", sans-serif;
+  font-size: 1.06rem;
+}
+
+.clinic-report-summary p {
+  margin: 8px 0 0;
+  color: var(--muted);
+  line-height: 1.5;
+}
+
+.clinic-report-summary-action {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 38px;
+  padding: 0 14px;
+  border-radius: 999px;
+  background: #eef3fb;
+  color: var(--accent-strong);
+  font-size: 0.78rem;
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+.clinic-report-details[open] .clinic-report-summary-action {
+  background: #f1f5f9;
+  color: #526173;
+}
+
+.clinic-report-details-card {
+  margin-top: 10px;
 }
 
 .clinic-report-sections {

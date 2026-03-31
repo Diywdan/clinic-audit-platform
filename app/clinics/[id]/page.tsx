@@ -290,8 +290,8 @@ export default async function ClinicDetailPage({
 
               <div className="clinic-report-stack">
                 {data.selectedEvaluation.reportBlocks.map((block) => (
-                  <Card key={block.blockId}>
-                    <div className="section-heading">
+                  <details key={block.blockId} className="clinic-report-details">
+                    <summary className="clinic-report-summary">
                       <div>
                         <h3>{block.name}</h3>
                         <p>
@@ -299,55 +299,58 @@ export default async function ClinicDetailPage({
                           {block.contributionPercent} п.п.
                         </p>
                       </div>
-                    </div>
-                    <div className="clinic-report-sections">
-                      {block.sections.map((section) => (
-                        <div key={section.section} className="clinic-report-section">
-                          <div className="clinic-report-section-title">{section.section}</div>
-                          <div className="clinic-report-criteria">
-                            {section.criteria.map((criterion) => (
-                              <div key={criterion.id} className="clinic-report-criterion">
-                                <div className="clinic-report-criterion-head">
-                                  <div>
-                                    <strong>
-                                      {criterion.order}. {criterion.text}
-                                    </strong>
-                                    {criterion.isCritical ? (
-                                      <span className="critical-pill">Критично</span>
-                                    ) : null}
-                                  </div>
-                                  <span
-                                    className={criterion.totalScore < 0 ? "score-negative" : criterion.totalScore > 0 ? "score-positive" : "score-neutral"}
-                                  >
-                                    {criterion.totalScore > 0 ? `+${criterion.totalScore}` : criterion.totalScore}
-                                  </span>
-                                </div>
-                                <div className="clinic-report-answer-list">
-                                  {criterion.answers.length ? (
-                                    criterion.answers.map((answer, index) => (
-                                      <div key={`${criterion.id}-${index}`} className="clinic-report-answer-item">
-                                        <span>{answer.label}</span>
-                                        <strong
-                                          className={answer.score < 0 ? "score-negative" : answer.score > 0 ? "score-positive" : "score-neutral"}
-                                        >
-                                          {answer.score > 0 ? `+${answer.score}` : answer.score}
-                                        </strong>
-                                      </div>
-                                    ))
-                                  ) : (
-                                    <div className="clinic-report-answer-item">
-                                      <span>Нет ответа</span>
-                                      <strong className="score-neutral">0</strong>
+                      <span className="clinic-report-summary-action">Показать детали</span>
+                    </summary>
+                    <Card className="clinic-report-details-card">
+                      <div className="clinic-report-sections">
+                        {block.sections.map((section) => (
+                          <div key={section.section} className="clinic-report-section">
+                            <div className="clinic-report-section-title">{section.section}</div>
+                            <div className="clinic-report-criteria">
+                              {section.criteria.map((criterion) => (
+                                <div key={criterion.id} className="clinic-report-criterion">
+                                  <div className="clinic-report-criterion-head">
+                                    <div>
+                                      <strong>
+                                        {criterion.order}. {criterion.text}
+                                      </strong>
+                                      {criterion.isCritical ? (
+                                        <span className="critical-pill">Критично</span>
+                                      ) : null}
                                     </div>
-                                  )}
+                                    <span
+                                      className={criterion.totalScore < 0 ? "score-negative" : criterion.totalScore > 0 ? "score-positive" : "score-neutral"}
+                                    >
+                                      {criterion.totalScore > 0 ? `+${criterion.totalScore}` : criterion.totalScore}
+                                    </span>
+                                  </div>
+                                  <div className="clinic-report-answer-list">
+                                    {criterion.answers.length ? (
+                                      criterion.answers.map((answer, index) => (
+                                        <div key={`${criterion.id}-${index}`} className="clinic-report-answer-item">
+                                          <span>{answer.label}</span>
+                                          <strong
+                                            className={answer.score < 0 ? "score-negative" : answer.score > 0 ? "score-positive" : "score-neutral"}
+                                          >
+                                            {answer.score > 0 ? `+${answer.score}` : answer.score}
+                                          </strong>
+                                        </div>
+                                      ))
+                                    ) : (
+                                      <div className="clinic-report-answer-item">
+                                        <span>Нет ответа</span>
+                                        <strong className="score-neutral">0</strong>
+                                      </div>
+                                    )}
+                                  </div>
                                 </div>
-                              </div>
-                            ))}
+                              ))}
+                            </div>
                           </div>
-                        </div>
-                      ))}
-                    </div>
-                  </Card>
+                        ))}
+                      </div>
+                    </Card>
+                  </details>
                 ))}
               </div>
             </>
