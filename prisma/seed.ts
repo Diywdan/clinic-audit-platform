@@ -43,6 +43,31 @@ const evaluatorSeed = [
 
 const demoEvaluationTemplates = [
   {
+    date: new Date("2025-11-18T09:00:00.000Z"),
+    profile: "medium" as const,
+    notes: "Демо: базовая осенняя проверка с отдельными замечаниями"
+  },
+  {
+    date: new Date("2025-12-10T09:00:00.000Z"),
+    profile: "low" as const,
+    notes: "Демо: зимняя проверка с выраженными проблемами"
+  },
+  {
+    date: new Date("2026-01-22T09:00:00.000Z"),
+    profile: "medium" as const,
+    notes: "Демо: повторная проверка после частичных исправлений"
+  },
+  {
+    date: new Date("2026-02-14T09:00:00.000Z"),
+    profile: "high" as const,
+    notes: "Демо: сильная проверка с высоким уровнем сервиса"
+  },
+  {
+    date: new Date("2026-03-05T09:00:00.000Z"),
+    profile: "medium" as const,
+    notes: "Демо: неоднородный результат перед весенним циклом"
+  },
+  {
     date: new Date("2026-03-15T09:00:00.000Z"),
     profile: "high" as const,
     notes: "Демо: стабильная сильная проверка"
