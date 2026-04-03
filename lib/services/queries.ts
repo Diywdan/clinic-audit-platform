@@ -144,7 +144,7 @@ export async function getEvaluatorSubmissions(userId: string) {
 export async function getDashboardData(filters?: { clinicId?: string; from?: Date; to?: Date }) {
   const where = {
     clinicId: filters?.clinicId || undefined,
-    createdAt: {
+    evaluationDate: {
       gte: filters?.from,
       lte: filters?.to ? addDays(filters.to, 1) : undefined
     }
@@ -155,7 +155,7 @@ export async function getDashboardData(filters?: { clinicId?: string; from?: Dat
     prisma.evaluation.findMany({
       where,
       include: { clinic: true, answers: { include: { criterion: true } } },
-      orderBy: { createdAt: "asc" }
+      orderBy: { evaluationDate: "asc" }
     })
   ]);
 
@@ -189,7 +189,7 @@ export async function getDashboardData(filters?: { clinicId?: string; from?: Dat
     }));
 
     const score = calculateEvaluationScore(answers);
-    const trendKey = format(evaluation.createdAt, "yyyy-MM-dd");
+    const trendKey = format(evaluation.evaluationDate, "yyyy-MM-dd");
     const trendEntry = trendMap.get(trendKey) ?? { total: 0, count: 0 };
     trendEntry.total += score.totalPercentage;
     trendEntry.count += 1;
