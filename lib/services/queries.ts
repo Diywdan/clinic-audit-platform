@@ -9,6 +9,7 @@ import { getClinicStatus } from "@/lib/utils";
 function buildEvaluationDetails(evaluation: {
   id: string;
   createdAt: Date;
+  evaluationDate: Date;
   photos: { id: string; url: string }[];
   user: { name: string | null; email: string };
   answers: Array<{
@@ -113,6 +114,7 @@ function buildEvaluationDetails(evaluation: {
   return {
     id: evaluation.id,
     createdAt: evaluation.createdAt,
+    evaluationDate: evaluation.evaluationDate,
     totalPercentage: score.totalPercentage,
     criticalCount: score.criticalViolations,
     user: evaluation.user,
