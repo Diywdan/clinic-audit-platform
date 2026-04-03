@@ -184,7 +184,7 @@ export default async function ClinicDetailPage({
                 <tbody>
                   {data.evaluations.map((evaluation) => (
                     <tr key={evaluation.id} className={data.selectedEvaluation?.id === evaluation.id ? "clinic-history-row-active" : undefined}>
-                      <td>{new Date(evaluation.createdAt).toLocaleDateString("ru-RU")}</td>
+                      <td>{new Date(evaluation.evaluationDate).toLocaleDateString("ru-RU")}</td>
                       <td>
                         <Link
                           href={`/clinics/${data.clinic.id}?evaluationId=${evaluation.id}`}
@@ -215,7 +215,7 @@ export default async function ClinicDetailPage({
                     <h3>Полный отчет по выбранной проверке</h3>
                     <p>
                       Проверка от{" "}
-                      {new Date(data.selectedEvaluation.createdAt).toLocaleDateString("ru-RU")} /{" "}
+                      {new Date(data.selectedEvaluation.evaluationDate).toLocaleDateString("ru-RU")} /{" "}
                       {data.selectedEvaluation.user.name ?? data.selectedEvaluation.user.email}
                     </p>
                   </div>
@@ -227,7 +227,7 @@ export default async function ClinicDetailPage({
                     >
                       {data.evaluations.map((evaluation) => (
                         <option key={evaluation.id} value={evaluation.id}>
-                          {new Date(evaluation.createdAt).toLocaleDateString("ru-RU")} /{" "}
+                          {new Date(evaluation.evaluationDate).toLocaleDateString("ru-RU")} /{" "}
                           {evaluation.user.name ?? evaluation.user.email} / {evaluation.totalPercentage}%
                         </option>
                       ))}

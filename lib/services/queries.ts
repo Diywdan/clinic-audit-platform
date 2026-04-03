@@ -339,7 +339,7 @@ export async function getClinicDetail(clinicId: string, selectedEvaluationId?: s
           user: { select: { name: true, email: true } },
           answers: { include: { criterion: true } }
         },
-        orderBy: { createdAt: "desc" }
+        orderBy: { evaluationDate: "desc" }
       }
     }
   });
@@ -385,7 +385,7 @@ export async function getClinicDetail(clinicId: string, selectedEvaluationId?: s
     .slice()
     .reverse()
     .map((evaluation) => ({
-      date: format(evaluation.createdAt, "yyyy-MM-dd"),
+      date: format(evaluation.evaluationDate, "yyyy-MM-dd"),
       clinicName: clinic.name,
       totalScore: evaluation.score.totalPercentage
     }));
@@ -418,6 +418,7 @@ export async function getClinicDetail(clinicId: string, selectedEvaluationId?: s
     evaluations: scoredEvaluations.map((evaluation) => ({
       id: evaluation.id,
       createdAt: evaluation.createdAt,
+      evaluationDate: evaluation.evaluationDate,
       totalPercentage: evaluation.score.totalPercentage,
       criticalCount: evaluation.score.criticalViolations,
       user: evaluation.user,
