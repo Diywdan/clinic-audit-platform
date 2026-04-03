@@ -13,47 +13,183 @@ const evaluatorEmails = [
   "artem.kosolapov@audit.local"
 ] as const;
 
-const demoEvaluationTemplates = [
-  {
-    date: new Date("2025-11-18T09:00:00.000Z"),
-    profile: "medium" as const,
-    notes: "Демо: базовая осенняя проверка с отдельными замечаниями"
-  },
-  {
-    date: new Date("2025-12-10T09:00:00.000Z"),
-    profile: "low" as const,
-    notes: "Демо: зимняя проверка с выраженными проблемами"
-  },
-  {
-    date: new Date("2026-01-22T09:00:00.000Z"),
-    profile: "medium" as const,
-    notes: "Демо: повторная проверка после частичных исправлений"
-  },
-  {
-    date: new Date("2026-02-14T09:00:00.000Z"),
-    profile: "high" as const,
-    notes: "Демо: сильная проверка с высоким уровнем сервиса"
-  },
-  {
-    date: new Date("2026-03-05T09:00:00.000Z"),
-    profile: "medium" as const,
-    notes: "Демо: неоднородный результат перед весенним циклом"
-  },
-  {
-    date: new Date("2026-03-15T09:00:00.000Z"),
-    profile: "high" as const,
-    notes: "Демо: стабильная сильная проверка"
-  },
-  {
-    date: new Date("2026-03-20T09:00:00.000Z"),
-    profile: "medium" as const,
-    notes: "Демо: смешанная проверка с отдельными замечаниями"
-  },
-  {
-    date: new Date("2026-03-24T09:00:00.000Z"),
-    profile: "low" as const,
-    notes: "Демо: проблемная проверка для аналитики"
-  }
+type DemoProfile = "high" | "medium" | "low";
+
+type DemoTemplate = {
+  date: Date;
+  profile: DemoProfile;
+  notes: string;
+};
+
+const demoTemplateGroups: DemoTemplate[][] = [
+  [
+    {
+      date: new Date("2025-11-18T09:00:00.000Z"),
+      profile: "medium",
+      notes: "Демо: базовая осенняя проверка с отдельными замечаниями"
+    },
+    {
+      date: new Date("2025-12-10T09:00:00.000Z"),
+      profile: "medium",
+      notes: "Демо: зимняя проверка без резких провалов"
+    },
+    {
+      date: new Date("2026-01-22T09:00:00.000Z"),
+      profile: "high",
+      notes: "Демо: после настройки процессов качество выросло"
+    },
+    {
+      date: new Date("2026-02-14T09:00:00.000Z"),
+      profile: "high",
+      notes: "Демо: сильная проверка с высоким уровнем сервиса"
+    },
+    {
+      date: new Date("2026-03-05T09:00:00.000Z"),
+      profile: "high",
+      notes: "Демо: устойчиво высокий результат"
+    },
+    {
+      date: new Date("2026-03-15T09:00:00.000Z"),
+      profile: "high",
+      notes: "Демо: стабильная сильная проверка"
+    },
+    {
+      date: new Date("2026-03-20T09:00:00.000Z"),
+      profile: "high",
+      notes: "Демо: высокая оценка без критических сбоев"
+    },
+    {
+      date: new Date("2026-03-24T09:00:00.000Z"),
+      profile: "medium",
+      notes: "Демо: небольшое снижение на фоне высокой базы"
+    }
+  ],
+  [
+    {
+      date: new Date("2025-11-18T09:00:00.000Z"),
+      profile: "low",
+      notes: "Демо: старт с выраженными проблемами"
+    },
+    {
+      date: new Date("2025-12-10T09:00:00.000Z"),
+      profile: "low",
+      notes: "Демо: повторный провал без системных исправлений"
+    },
+    {
+      date: new Date("2026-01-22T09:00:00.000Z"),
+      profile: "medium",
+      notes: "Демо: первые признаки восстановления"
+    },
+    {
+      date: new Date("2026-02-14T09:00:00.000Z"),
+      profile: "medium",
+      notes: "Демо: частичные улучшения по ключевым зонам"
+    },
+    {
+      date: new Date("2026-03-05T09:00:00.000Z"),
+      profile: "high",
+      notes: "Демо: заметный скачок после управленческого вмешательства"
+    },
+    {
+      date: new Date("2026-03-15T09:00:00.000Z"),
+      profile: "high",
+      notes: "Демо: сильная проверка после исправлений"
+    },
+    {
+      date: new Date("2026-03-20T09:00:00.000Z"),
+      profile: "medium",
+      notes: "Демо: закрепление результата с отдельными замечаниями"
+    },
+    {
+      date: new Date("2026-03-24T09:00:00.000Z"),
+      profile: "high",
+      notes: "Демо: выход из красной зоны"
+    }
+  ],
+  [
+    {
+      date: new Date("2025-11-18T09:00:00.000Z"),
+      profile: "high",
+      notes: "Демо: сильный старт"
+    },
+    {
+      date: new Date("2025-12-10T09:00:00.000Z"),
+      profile: "high",
+      notes: "Демо: удержание высокого уровня"
+    },
+    {
+      date: new Date("2026-01-22T09:00:00.000Z"),
+      profile: "medium",
+      notes: "Демо: начало просадки по отдельным блокам"
+    },
+    {
+      date: new Date("2026-02-14T09:00:00.000Z"),
+      profile: "medium",
+      notes: "Демо: рост числа замечаний"
+    },
+    {
+      date: new Date("2026-03-05T09:00:00.000Z"),
+      profile: "low",
+      notes: "Демо: серьёзное ухудшение в ходе цикла"
+    },
+    {
+      date: new Date("2026-03-15T09:00:00.000Z"),
+      profile: "low",
+      notes: "Демо: проблемная проверка после просадки"
+    },
+    {
+      date: new Date("2026-03-20T09:00:00.000Z"),
+      profile: "medium",
+      notes: "Демо: попытка стабилизации"
+    },
+    {
+      date: new Date("2026-03-24T09:00:00.000Z"),
+      profile: "medium",
+      notes: "Демо: частичное выравнивание результата"
+    }
+  ],
+  [
+    {
+      date: new Date("2025-11-18T09:00:00.000Z"),
+      profile: "medium",
+      notes: "Демо: средний старт"
+    },
+    {
+      date: new Date("2025-12-10T09:00:00.000Z"),
+      profile: "high",
+      notes: "Демо: удачный цикл с сильным результатом"
+    },
+    {
+      date: new Date("2026-01-22T09:00:00.000Z"),
+      profile: "low",
+      notes: "Демо: резкий провал после сильного месяца"
+    },
+    {
+      date: new Date("2026-02-14T09:00:00.000Z"),
+      profile: "medium",
+      notes: "Демо: частичное восстановление"
+    },
+    {
+      date: new Date("2026-03-05T09:00:00.000Z"),
+      profile: "high",
+      notes: "Демо: рывок вверх после корректировок"
+    },
+    {
+      date: new Date("2026-03-15T09:00:00.000Z"),
+      profile: "medium",
+      notes: "Демо: смешанный результат"
+    },
+    {
+      date: new Date("2026-03-20T09:00:00.000Z"),
+      profile: "low",
+      notes: "Демо: повторная нестабильность"
+    },
+    {
+      date: new Date("2026-03-24T09:00:00.000Z"),
+      profile: "medium",
+      notes: "Демо: средний результат без явного лидирования"
+    }
+  ]
 ] as const;
 
 function sortOptionsByScore(scoreLeft: number, scoreRight: number) {
@@ -62,7 +198,7 @@ function sortOptionsByScore(scoreLeft: number, scoreRight: number) {
 
 function pickSingleOption(
   criterion: (typeof criteriaCatalog)[number],
-  profile: "high" | "medium" | "low",
+  profile: DemoProfile,
   clinicIndex: number
 ) {
   const options = [...criterion.options].sort((left, right) => sortOptionsByScore(left.score, right.score));
@@ -92,7 +228,7 @@ function pickSingleOption(
   return neutral[0] ?? negative[0] ?? options[options.length - 1];
 }
 
-function buildDemoAnswers(clinicIndex: number, profile: "high" | "medium" | "low") {
+function buildDemoAnswers(clinicIndex: number, profile: DemoProfile) {
   return criteriaCatalog.flatMap((criterion) => {
     if (criterion.type === "single") {
       const option = pickSingleOption(criterion, profile, clinicIndex);
@@ -154,9 +290,11 @@ async function main() {
   let created = 0;
 
   for (const [clinicIndex, clinic] of clinics.entries()) {
-    for (const [templateIndex, template] of demoEvaluationTemplates.entries()) {
+    const templateGroup = demoTemplateGroups[clinicIndex % demoTemplateGroups.length];
+
+    for (const [templateIndex, template] of templateGroup.entries()) {
       const user = evaluators[(clinicIndex + templateIndex) % evaluators.length];
-      const answers = buildDemoAnswers(clinicIndex + templateIndex, template.profile);
+      const answers = buildDemoAnswers(clinicIndex + templateIndex * 2, template.profile);
       const score = calculateEvaluationScore(answers);
 
       await prisma.evaluation.create({
@@ -192,7 +330,7 @@ async function main() {
   console.log("Demo evaluations refreshed", {
     clinics: clinics.length,
     evaluators: evaluators.length,
-    templates: demoEvaluationTemplates.length,
+    templatesPerClinic: demoTemplateGroups[0].length,
     created
   });
 }
