@@ -239,43 +239,21 @@ async function main() {
     }
   });
 
+  await prisma.evaluation.deleteMany({
+    where: {
+      clinicId: { in: clinics.map((clinic) => clinic.id) },
+      userId: { in: evaluators.map((evaluator) => evaluator.id) }
+    }
+  });
+
   for (const [clinicIndex, clinic] of clinics.entries()) {
     for (const [templateIndex, template] of demoEvaluationTemplates.entries()) {
       const user = evaluators[(clinicIndex + templateIndex) % evaluators.length];
       const answers = buildDemoAnswers(clinicIndex + templateIndex, template.profile);
       const score = calculateEvaluationScore(answers);
 
-      await prisma.evaluation.upsert({
-        where: {
-          clinicId_userId_evaluationDate: {
-            clinicId: clinic.id,
-            userId: user.id,
-            evaluationDate: template.date
-          }
-        },
-        update: {
-          totalScore: score.totalScore,
-          totalPercentage: score.totalPercentage,
-          criticalCount: score.criticalViolations,
-          notes: template.notes,
-          answers: {
-            deleteMany: {},
-            create: answers.map((answer) => ({
-              criterionId: answer.criterionId,
-              optionId: answer.optionId,
-              selectedScore: answer.selectedScore
-            }))
-          },
-          photos: {
-            deleteMany: {},
-            create: [
-              { url: "/uploads/demo-1.jpg" },
-              { url: "/uploads/demo-2.jpg" },
-              { url: "/uploads/demo-3.jpg" }
-            ]
-          }
-        },
-        create: {
+      await prisma.evaluation.create({
+        data: {
           clinicId: clinic.id,
           userId: user.id,
           evaluationDate: template.date,
