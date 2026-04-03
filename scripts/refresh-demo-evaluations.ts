@@ -1,4 +1,5 @@
 import { PrismaClient } from "@prisma/client";
+import { addDays } from "date-fns";
 
 import { criteriaCatalog } from "@/lib/data/criteria";
 import { calculateEvaluationScore } from "@/lib/services/score";
@@ -297,11 +298,14 @@ async function main() {
       const answers = buildDemoAnswers(clinicIndex + templateIndex * 2, template.profile);
       const score = calculateEvaluationScore(answers);
 
+      const dateOffset = (clinicIndex % 5) * 3 + (templateIndex % 2);
+      const evaluationDate = addDays(template.date, dateOffset);
+
       await prisma.evaluation.create({
         data: {
           clinicId: clinic.id,
           userId: user.id,
-          evaluationDate: template.date,
+          evaluationDate,
           totalScore: score.totalScore,
           totalPercentage: score.totalPercentage,
           criticalCount: score.criticalViolations,
