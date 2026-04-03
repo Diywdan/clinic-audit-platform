@@ -72,15 +72,6 @@ export function AppShell({ title, subtitle, role, children }: AppShellProps) {
             <span>Новая проверка</span>
           </button>
         ) : null}
-        <div className="sidebar-footer">
-          <button
-            className="nav-link nav-link-muted nav-link-danger"
-            onClick={() => signOut({ callbackUrl: "/login" })}
-          >
-            <LogOut size={18} />
-            <span>Выход</span>
-          </button>
-        </div>
       </aside>
       <main className="content">
         <header className="topbar">

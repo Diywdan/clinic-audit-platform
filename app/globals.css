@@ -178,6 +178,32 @@ textarea {
   gap: 10px;
 }
 
+.topbar-logout {
+  height: 36px;
+  padding: 0 12px;
+  border-radius: 999px;
+  border: 1px solid rgba(197, 59, 50, 0.16);
+  background: rgba(255, 255, 255, 0.92);
+  color: #8e342d;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.92rem;
+  font-weight: 700;
+  box-shadow: none;
+}
+
+.topbar-logout:hover {
+  background: #fff3f2;
+  border-color: rgba(197, 59, 50, 0.28);
+  color: #7f2b25;
+}
+
+.topbar-logout:focus-visible {
+  outline: 2px solid rgba(197, 59, 50, 0.2);
+  outline-offset: 2px;
+}
+
 .searchbox {
   height: 40px;
   min-width: 260px;
