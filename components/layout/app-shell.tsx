@@ -8,7 +8,6 @@ import {
   ClipboardCheck,
   Hospital,
   LogOut,
-  Search,
   ShieldCheck,
 } from "lucide-react";
 import { signOut } from "next-auth/react";
@@ -22,7 +21,6 @@ type AppShellProps = {
 
 export function AppShell({ title, subtitle, role, children }: AppShellProps) {
   const pathname = usePathname();
-  const showSearch = role !== "EVALUATOR";
   const links =
     role === "ADMIN"
       ? [
@@ -88,12 +86,14 @@ export function AppShell({ title, subtitle, role, children }: AppShellProps) {
         <header className="topbar">
           <div className="topbar-brand">Жалоба как подарок</div>
           <div className="topbar-tools">
-            {showSearch ? (
-              <label className="searchbox">
-                <Search size={16} />
-                <input placeholder="Поиск по клиникам..." />
-              </label>
-            ) : null}
+            <button
+              className="button button-ghost topbar-logout"
+              type="button"
+              onClick={() => signOut({ callbackUrl: "/login" })}
+            >
+              <LogOut size={16} />
+              <span>Выход</span>
+            </button>
           </div>
         </header>
         <header className="page-header">

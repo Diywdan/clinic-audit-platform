@@ -244,9 +244,9 @@ async function main() {
           photos: {
             deleteMany: {},
             create: [
-              { url: "/uploads/demo-1.svg" },
-              { url: "/uploads/demo-2.svg" },
-              { url: "/uploads/demo-3.svg" }
+              { url: "/uploads/demo-1.jpg" },
+              { url: "/uploads/demo-2.jpg" },
+              { url: "/uploads/demo-3.jpg" }
             ]
           }
         },
@@ -267,9 +267,9 @@ async function main() {
           },
           photos: {
             create: [
-              { url: "/uploads/demo-1.svg" },
-              { url: "/uploads/demo-2.svg" },
-              { url: "/uploads/demo-3.svg" }
+              { url: "/uploads/demo-1.jpg" },
+              { url: "/uploads/demo-2.jpg" },
+              { url: "/uploads/demo-3.jpg" }
             ]
           }
         }
